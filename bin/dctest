@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -t dctest1.simpli.fi 'sudo su armin'

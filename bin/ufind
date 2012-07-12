@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ueber_dir=${HOME}/src/ueber
+if [ -z "$UEBER_DIR" ]
+then
+  ueber_dir=$UEBER_DIR
+fi
+
+find $ueber_dir $*
