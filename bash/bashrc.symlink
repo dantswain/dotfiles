@@ -7,7 +7,7 @@ PATH=$PATH:$HOME/bin:$GOPATH/bin
 
 PATH=/usr/local/bin:$PATH
 
-UEBER_DIR=$HOME/src/ueber
+UEBER_DIR=$HOME/src/ueber_mac
 export UEBER_DIR
 
 U=$UEBER_DIR
