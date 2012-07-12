@@ -1,85 +1,76 @@
-set noswapfile
+if has("gui_running")
+    colorscheme macvim
+    set guioptions=egmrt
+    set transparency=3
+"    set lines=55
+"    set columns=80
+endif
 
-" ----------------------------------------------------------------------------
-"  Text Formatting
-" ----------------------------------------------------------------------------
+set smartindent
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set showtabline=2
 
-set autoindent             " automatic indent new lines
-set smartindent            " be smart about it
-inoremap # X<BS>#
-set nowrap                 " do not wrap lines
-set softtabstop=2          " yep, two
-set shiftwidth=2           " ..
-set tabstop=4
-set expandtab              " expand tabs to spaces
-set nosmarttab             " fuck tabs
-set formatoptions+=n       " support for numbered/bullet lists
-"set textwidth=80           " wrap at 80 chars by default
-set virtualedit=block      " allow virtual edit in visual block ..
+set wildmenu
+set ruler
+set number
+set hlsearch
+set incsearch
+set showmatch
 
-" ----------------------------------------------------------------------------
-"  Remapping
-" ----------------------------------------------------------------------------
+" Change mapleader
+let mapleader=","
 
-" lead with ,
-let mapleader = ","
+if has("autocmd")
+  filetype plugin indent on
+end
 
-" exit to normal mode with 'jj'
-inoremap jj <ESC>
+" vim-ruby: https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
+set nocompatible
+syntax on
 
+" smart paste:  http://vim.wikia.com/wiki/Smart_paste
+:nnoremap <D-v> "+P=']
+:inoremap <D-v> <D-o>"+P<C-o>=']
 
-" reflow paragraph with Q in normal and visual mode
-nnoremap Q gqap
-vnoremap Q gq
+" VimOrganize
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
+au BufEnter *.org            call org#SetOrgFileType()
 
-" sane movement with wrap turned on
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
+" go syntax hilighting
+au BufRead,BufNewFile *.go set filetype=go
 
-" ----------------------------------------------------------------------------
-"  UI
-" ----------------------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" From Brandon
 
-set ruler                  " show the cursor position all the time
-set noshowcmd              " don't display incomplete commands
-set nolazyredraw           " turn off lazy redraw
-set number                 " line numbers
-set wildmenu               " turn on wild menu
-set wildmode=list:longest,full
-set ch=2                   " command line height
-set backspace=2            " allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
-set shortmess=filtIoOA     " shorten messages
-set report=0               " tell us about changes
-set nostartofline          " don't jump to the start of line when scrolling
+set cursorline " Highlight current line
+set history=1000 " Increase history from 20 default to 1000
+set hlsearch " Highlight searches
+set magic " Enable extended regexes.
+set scrolloff=3 " Start scrolling three lines before horizontal border of window.
+set showmode " Show the current mode.
+set showtabline=2 " Always show tab bar.
+set splitbelow " New window goes below
+set splitright " New windows goes right
+set title " Show the filename in the window titlebar.
+set ttyfast " Send more characters at a given time.
+set wildchar=<TAB> " Character for CLI expansion (TAB-completion).
+set wildmode=list:longest " Complete only until point of ambiguity.
+set wrapscan " Searches wrap around end of file
 
-
-" ----------------------------------------------------------------------------
-" Visual Cues
-" ----------------------------------------------------------------------------
-
-set showmatch              " brackets/braces that is
-set mat=5                  " duration to show matching brace (1/10 sec)
-set incsearch              " do incremental searching
-set laststatus=2           " always show the status line
-set ignorecase             " ignore case when searching
-set nohlsearch             " don't highlight searches
-set visualbell             " shut the fuck up
-
-
-" ---------------------------------------------------------------------------
-"  Strip all trailing whitespace in file
-" ---------------------------------------------------------------------------
-
-function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
+" Execute open rspec buffer
+function! RunSpec(args)
+  let cmd = ":! rspec --color % -cfn " . a:args
+  execute cmd 
 endfunction
-map ,s :call StripWhitespace ()<CR>
+ 
+" Mappings
+" run one rspec example or describe block based on cursor position
+map <leader>rs :call RunSpec("-l " . <C-r>=line('.')<CR>)
+" run full rspec file
+map <leader>RS :call RunSpec("")
+
+" End From Brandon
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
