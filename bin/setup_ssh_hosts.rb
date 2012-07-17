@@ -31,11 +31,11 @@ out_config << Header
 out_config << "\n"
 
 sifi_hosts = []
-sifi_hosts << host_range("dcbid%i", (0..19))
-sifi_hosts << host_range("sebid%i", (0..8))
-sifi_hosts << host_range("sgbid%i", (0..2))
-sifi_hosts << host_range("debid%i", (0..10))
-sifi_hosts << host_range("ccp%i", (0..9))
+sifi_hosts << host_range("dcbid%i", (1..19))
+sifi_hosts << host_range("sebid%i", (1..8))
+sifi_hosts << host_range("sgbid%i", (1..2))
+sifi_hosts << host_range("debid%i", (1..10))
+sifi_hosts << host_range("ccp%i", (1..9))
 sifi_hosts << host_range("dctest%i", (1..2))
 sifi_hosts << host_range("dcrpt%i", (1..4))
 sifi_hosts << "dei1"
