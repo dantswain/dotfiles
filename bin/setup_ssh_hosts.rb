@@ -10,8 +10,14 @@ Header = "#### START AUTOSETUP ####\n#   #{__FILE__} on #{Time.now}"
 Footer = "#### AUTOSETUP END ####"
 
 ConfigFileName = "#{ENV['HOME']}/.ssh/config"
-FileUtils.cp ConfigFileName, ConfigFileName + ".backup"
-existing_config = File.open(ConfigFileName).read
+
+existing_config = ""
+# it's ok if the config isn't there
+if File.exist? ConfigFileName
+  existing_config = File.open(ConfigFileName).read
+  FileUtils.cp ConfigFileName, ConfigFileName + ".backup"
+end
+  
 
 finder_regex = Regexp.new("#### START.*END ####", Regexp::MULTILINE)
 
