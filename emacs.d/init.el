@@ -4,6 +4,14 @@
 
 ;;; Code:
 
+;; cask/pallet for package management
+(require 'cask
+      (if (eq system-type 'darwin)
+          "/usr/local/Cellar/cask/0.6.0/cask.el"
+          "~/.cask/cask.el"))
+(cask-initialize)
+(require 'pallet)
+
 ;; where I keep my packages
 (add-to-list 'load-path "~/.emacs.d/packages/")
 
