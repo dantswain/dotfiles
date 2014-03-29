@@ -10,10 +10,21 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# OS-dependent config
+if [[ `uname` == 'Darwin' ]]
+then
+  chruby_root=/usr/local/opt/chruby/share
+  z_root=`brew --prefix`/etc/profile.d
+else
+  chruby_root=/usr/local/share
+  z_root=${HOME}/.z
+fi
+
+
 # Customize to your needs...
 
 # chruby
-source /usr/local/opt/chruby/share/chruby/chruby.sh
+source ${chruby_root}/chruby/chruby.sh
 chruby ruby-1.9.3
 
 # don't autocorrect 'gem'
@@ -23,4 +34,4 @@ alias gem='nocorrect gem'
 alias emacs='TERM=xterm-256color emacs -nw'
 
 # for great z
-. `brew --prefix`/etc/profile.d/z.sh
+. ${z_root}/z.sh
