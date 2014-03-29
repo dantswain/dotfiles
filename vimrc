@@ -23,7 +23,7 @@ if has("multi_byte")
 endif
 
 " pathogen: https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
+silent! call pathogen#infect()
 
 set smartindent
 set autoindent
