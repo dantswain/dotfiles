@@ -17,7 +17,7 @@ then
   z_root=`brew --prefix`/etc/profile.d
 else
   chruby_root=/usr/local/share
-  z_root=${HOME}/.z
+  z_root=${HOME}/.zcommand
 fi
 
 
