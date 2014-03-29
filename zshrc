@@ -24,8 +24,12 @@ fi
 # Customize to your needs...
 
 # chruby
-source ${chruby_root}/chruby/chruby.sh
-chruby ruby-1.9.3
+chruby=${chruby_root}/chruby/chruby.sh
+if [[ -e ${chruby} ]]
+then
+  source ${chruby}
+  chruby ruby-1.9.3
+fi
 
 # don't autocorrect 'gem'
 alias gem='nocorrect gem'
@@ -34,4 +38,8 @@ alias gem='nocorrect gem'
 alias emacs='TERM=xterm-256color emacs -nw'
 
 # for great z
-. ${z_root}/z.sh
+z_cmd=${z_root}/z.sh
+if [[ -e ${z_cmd} ]]
+then
+  source ${z_root}/z.sh
+fi
