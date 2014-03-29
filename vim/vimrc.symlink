@@ -1,0 +1,76 @@
+if has("gui_running")
+    colorscheme macvim
+    set guioptions=egmrt
+    set transparency=3
+"    set lines=55
+"    set columns=80
+endif
+
+set smartindent
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set showtabline=2
+
+set wildmenu
+set ruler
+set number
+set hlsearch
+set incsearch
+set showmatch
+
+" Change mapleader
+let mapleader=","
+
+if has("autocmd")
+  filetype plugin indent on
+end
+
+" vim-ruby: https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
+set nocompatible
+syntax on
+
+" smart paste:  http://vim.wikia.com/wiki/Smart_paste
+:nnoremap <D-v> "+P=']
+:inoremap <D-v> <D-o>"+P<C-o>=']
+
+" VimOrganize
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
+au BufEnter *.org            call org#SetOrgFileType()
+
+" go syntax hilighting
+au BufRead,BufNewFile *.go set filetype=go
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" From Brandon
+
+set cursorline " Highlight current line
+set history=1000 " Increase history from 20 default to 1000
+set hlsearch " Highlight searches
+set magic " Enable extended regexes.
+set scrolloff=3 " Start scrolling three lines before horizontal border of window.
+set showmode " Show the current mode.
+set showtabline=2 " Always show tab bar.
+set splitbelow " New window goes below
+set splitright " New windows goes right
+set title " Show the filename in the window titlebar.
+set ttyfast " Send more characters at a given time.
+set wildchar=<TAB> " Character for CLI expansion (TAB-completion).
+set wildmode=list:longest " Complete only until point of ambiguity.
+set wrapscan " Searches wrap around end of file
+
+" Execute open rspec buffer
+function! RunSpec(args)
+  let cmd = ":! rspec --color % -cfn " . a:args
+  execute cmd 
+endfunction
+ 
+" Mappings
+" run one rspec example or describe block based on cursor position
+map <leader>rs :call RunSpec("-l " . <C-r>=line('.')<CR>)
+" run full rspec file
+map <leader>RS :call RunSpec("")
+
+" End From Brandon
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

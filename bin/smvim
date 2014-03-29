@@ -1,0 +1,2 @@
+#!/bin/bash
+mvim -c "set lines=40" -c "set columns=85" $*
