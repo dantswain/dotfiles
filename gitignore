@@ -1,8 +1,0 @@
-*.swp
-.DS_Store
-mac-build/
-*.swo
-[#]*[#]
-.\#*
-*~
-.dir-locals.el

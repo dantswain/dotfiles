@@ -1,9 +1,0 @@
-[user]
-	name = Dan Swain
-	email = dan.t.swain@gmail.com
-[color]
-	ui = true
-[core]
-	excludesfile = /Users/dswain/.gitignore
-[push]
-	default = simple
