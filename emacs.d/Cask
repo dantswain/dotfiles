@@ -1,7 +1,7 @@
-(source gnu)
-(source "elpa" "http://tromey.com/elpa/")
-(source melpa)
 (source marmalade)
+(source melpa)
+(source "elpa" "http://tromey.com/elpa/")
+(source gnu)
 
 (depends-on "ag")
 (depends-on "ag")
@@ -26,6 +26,7 @@
 (depends-on "flycheck")
 (depends-on "flycheck")
 (depends-on "git-commit-mode")
+(depends-on "git-gutter")
 (depends-on "git-rebase-mode")
 (depends-on "ir-black-theme")
 (depends-on "ir-black-theme")
