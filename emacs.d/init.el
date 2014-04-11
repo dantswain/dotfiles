@@ -58,6 +58,9 @@
 (require 'git-gutter)
 (global-git-gutter-mode t)
 
+;; enable relative line numbers
+(require 'linum-relative)
+
 ;; package setup
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -121,6 +124,9 @@
 ;; erlang indentation
 (require 'erlang)
 (setq erlang-indent-level 2)
+
+;; javascript indentation
+(setq js-indent-level 2)
 
 ;; scroll one line at a time (less "jumpy" than defaults)
 ;;     http://www.emacswiki.org/emacs/SmoothScrolling

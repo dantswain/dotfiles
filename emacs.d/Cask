@@ -31,6 +31,7 @@
 (depends-on "handlebars-mode")
 (depends-on "ir-black-theme")
 (depends-on "ir-black-theme")
+(depends-on "linum-relative")
 (depends-on "magit")
 (depends-on "magit")
 (depends-on "package-build")
