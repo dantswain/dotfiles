@@ -15,6 +15,9 @@ if [[ `uname` == 'Darwin' ]]
 then
   chruby_root=/usr/local/opt/chruby/share
   z_root=`brew --prefix`/etc/profile.d
+  
+  # Haskell/cabal
+  export PATH=${HOME}/Library/Haskell/bin:${PATH}
 else
   chruby_root=/usr/local/share
   z_root=${HOME}/.zcommand
