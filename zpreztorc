@@ -34,7 +34,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'osx' \
   'completion' \
-  'prompt'
+  'prompt' \
+  'tmux'
 
 #
 # Editor
