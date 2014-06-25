@@ -22,9 +22,6 @@ if has("multi_byte")
   setglobal fileencoding=utf-8           " change default file encoding when writing new files
 endif
 
-" pathogen: https://github.com/tpope/vim-pathogen
-silent! call pathogen#infect()
-
 set smartindent
 set autoindent
 set expandtab
