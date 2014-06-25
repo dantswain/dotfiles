@@ -9,6 +9,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -16,6 +17,11 @@ filetype plugin indent on    " required
 
 " End Vundle setup
 """"""""""""""""""""""""""""
+
+" solarized light
+syntax enable
+set background=light
+colorscheme solarized
 
 if has("gui_running")
     colorscheme ir_black
