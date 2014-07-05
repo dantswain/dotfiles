@@ -29,8 +29,11 @@
 
 ;; Use the ir-black theme for Emacs24
 ;;   https://github.com/jmdeldin/ir-black-theme.el
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'ir-black t)
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;;(load-theme 'ir-black t)
+;; the 't' keeps emacs from continually asking
+;; permission to load the theme
+(load-theme 'solarized-light t)
 
 ;; don't launch the startup screen
 (setq inhibit-startup-buffer-menu t)
@@ -38,6 +41,9 @@
 
 ;; never use tabs
 (setq-default indent-tabs-mode nil)
+
+;; indent on enter
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; markdown mode
 ;;   http://jblevins.org/projects/markdown-mode/
@@ -148,6 +154,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(flycheck-indication-mode (quote left-fringe))
  '(magit-diff-options nil)
  '(safe-local-variable-values (quote ((flycheck-erlang-executable . "erlc -Ilib"))))

@@ -53,6 +53,7 @@
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "shut-up")
+(depends-on "solarized-theme")
 (depends-on "textmate")
 (depends-on "textmate")
 (depends-on "thrift")
