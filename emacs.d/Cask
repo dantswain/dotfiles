@@ -29,6 +29,7 @@
 (depends-on "git-gutter")
 (depends-on "git-rebase-mode")
 (depends-on "handlebars-mode")
+(depends-on "handlebars-mode")
 (depends-on "ir-black-theme")
 (depends-on "ir-black-theme")
 (depends-on "linum-relative")
