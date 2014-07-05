@@ -58,9 +58,6 @@
 (require 'git-gutter)
 (global-git-gutter-mode t)
 
-;; enable relative line numbers
-(require 'linum-relative)
-
 ;; package setup
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
