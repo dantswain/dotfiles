@@ -31,7 +31,8 @@ chruby=${chruby_root}/chruby/chruby.sh
 if [[ -e ${chruby} ]]
 then
   source ${chruby}
-  chruby ruby-1.9.3
+  source ${chruby_root}/chruby/auto.sh
+  chruby ruby-2.1
 fi
 
 # don't autocorrect 'gem'
