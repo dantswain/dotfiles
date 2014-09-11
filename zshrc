@@ -46,3 +46,6 @@ if [[ -e ${z_cmd} ]]
 then
   source ${z_root}/z.sh
 fi
+
+PERL_MB_OPT="--install_base \"/Users/dswain/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/dswain/perl5"; export PERL_MM_OPT;

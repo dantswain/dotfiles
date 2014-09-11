@@ -30,10 +30,10 @@
 ;; Use the ir-black theme for Emacs24
 ;;   https://github.com/jmdeldin/ir-black-theme.el
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;;(load-theme 'ir-black t)
+(load-theme 'ir-black t)
 ;; the 't' keeps emacs from continually asking
 ;; permission to load the theme
-(load-theme 'solarized-light t)
+;;(load-theme 'solarized-light t)
 
 ;; don't launch the startup screen
 (setq inhibit-startup-buffer-menu t)
@@ -44,6 +44,9 @@
 
 ;; indent on enter
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; automatic paren/bracket closure
+(electric-pair-mode)
 
 ;; markdown mode
 ;;   http://jblevins.org/projects/markdown-mode/
@@ -128,6 +131,12 @@
 (require 'erlang)
 (setq erlang-indent-level 2)
 (add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
+
+;; auto-complete
+(require 'auto-complete-config)
+(ac-config-default)
+(add-to-list 'ac-modes 'erlang-mode)
+(auto-complete-mode)
 
 ;; javascript indentation
 (setq js-indent-level 2)
