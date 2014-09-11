@@ -18,10 +18,11 @@
 " End Vundle setup
 """"""""""""""""""""""""""""
 
-" solarized light
+" colorscheme
 syntax enable
 set background=light
-"colorscheme solarized
+colorscheme desert
+autocmd ColorScheme * hi CursorColumn guibg=#A1A1D1
 
 if has("gui_running")
     colorscheme ir_black
