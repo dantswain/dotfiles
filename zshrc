@@ -23,6 +23,12 @@ else
   z_root=${HOME}/.zcommand
 fi
 
+# kerl erlang version
+export ERLANG_INSTALL=${HOME}/bin/r17p1
+if [[ -e ${ERLANG_INSTALL}/activate ]]
+then
+  source ${ERLANG_INSTALL}/activate
+fi
 
 # Customize to your needs...
 
