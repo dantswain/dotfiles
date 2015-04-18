@@ -1,44 +1,49 @@
 """"""""""""""""""""""""""""
 " Vundle setup
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-"
-"" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"
-"" let Vundle manage Vundle, required
-"Plugin 'gmarik/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized'
-"
-"" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'burnettk/vim-angular'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " End Vundle setup
 """"""""""""""""""""""""""""
 
+" use 256 colors in terminal 
+set t_Co=256
+
 " colorscheme
 syntax enable
-set background=light
-colorscheme desert
-autocmd ColorScheme * hi CursorColumn guibg=#A1A1D1
+set background=dark
+colorscheme solarized
 
 if has("gui_running")
-    colorscheme ir_black
+"    colorscheme ir_black
     set guioptions=egmrt
     set transparency=3
 "    set lines=55
 "    set columns=80
     
     " color tweaks
-    autocmd ColorScheme * hi CursorLine guibg=#2D2D2D
-    autocmd ColorScheme * hi CursorColumn guibg=#2D2D2D
+"    autocmd ColorScheme * hi CursorLine guibg=#2D2D2D
+"    autocmd ColorScheme * hi CursorColumn guibg=#2D2D2D
 
 endif
-
-" use 256 colors in terminal 
-set t_Co=256
 
 if has("multi_byte")
   if &termencoding == ""
@@ -146,3 +151,4 @@ map <leader>RS :call RunSpec("")
 " End From Brandon
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+highlight CursorColumn ctermbg=black

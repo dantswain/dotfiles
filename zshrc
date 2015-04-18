@@ -38,7 +38,7 @@ if [[ -e ${chruby} ]]
 then
   source ${chruby}
   source ${chruby_root}/chruby/auto.sh
-  chruby ruby-2.1
+  chruby ruby-2.2
 fi
 
 # don't autocorrect 'gem'
@@ -56,3 +56,5 @@ fi
 
 PERL_MB_OPT="--install_base \"/Users/dswain/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/dswain/perl5"; export PERL_MM_OPT;
+
+export DATA_BAG_PATH=/Users/dswain/sifi_src/chef-repo/data_bags/

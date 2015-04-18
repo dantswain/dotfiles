@@ -11,6 +11,7 @@
           "~/.cask/cask.el"))
 (cask-initialize)
 (require 'pallet)
+(pallet-mode t)
 
 ;; where I keep my packages
 (add-to-list 'load-path "~/.emacs.d/packages/")
@@ -202,6 +203,12 @@
                                  answer)))))))
 
 (global-set-key (kbd "C-c +") 'my-increment-number-decimal)
+
+(require 'whitespace)
+(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+
+(add-hook 'prog-mode-hook 'whitespace-mode)
 
 (provide 'init)
 ;;; init.el ends here
