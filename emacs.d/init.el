@@ -46,6 +46,10 @@
 ;; indent on enter
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;; yell at me if i go past 80 columns
+(require 'column-enforce-mode)
+(global-column-enforce-mode t)
+
 ;; automatic paren/bracket closure
 (electric-pair-mode)
 
@@ -76,10 +80,20 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
+
+;; don't indent c++ namespaces
+;; http://stackoverflow.com/questions/13825188/suppress-c-namespace-indentation-in-emacs
+(defconst my-cc-style
+    '("stroustrup"
+          (c-offsets-alist . ((innamespace . [0])))))
+
+(c-add-style "my-cc-mode" my-cc-style)
+(setq c-default-style "my-cc-mode" c-basic-offset 4)
+
 ;; c++ stuff (THANKS JR)
 (add-hook 'c++-mode-hook
           '(lambda ()
-             (setq c-default-style "stroustrup" c-basic-offset 4)))
+             (setq c-set-style "my-cc-mode" c-basic-offset 4)))
 
 (add-hook
  'c++-mode-hook
@@ -133,6 +147,13 @@
 (setq erlang-indent-level 2)
 (add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
 
+;; yas
+(require 'yasnippet)
+
+;; elixir
+(require 'elixir-mode)
+(add-hook 'elixir-mode-hook 'yas-minor-mode)
+
 ;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
@@ -156,15 +177,23 @@
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
 
+;; shut up, magit
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(custom-safe-themes
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(flycheck-indication-mode (quote left-fringe))
  '(magit-diff-options nil)
- '(safe-local-variable-values (quote ((flycheck-erlang-executable . "erlc -Ilib"))))
+ '(safe-local-variable-values
+   (quote
+    ((encoding . utf-8)
+     (flycheck-erlang-executable . "erlc -Ilib"))))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
