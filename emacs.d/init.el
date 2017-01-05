@@ -7,8 +7,8 @@
 ;; cask/pallet for package management
 (require 'cask
       (if (eq system-type 'darwin)
-          "/usr/local/Cellar/cask/0.6.0/cask.el"
-          "~/.cask/cask.el"))
+       "/usr/local/share/emacs/site-lisp/cask/cask.el"
+       "~/.cask/cask.el"))
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
@@ -31,10 +31,12 @@
 ;; Use the ir-black theme for Emacs24
 ;;   https://github.com/jmdeldin/ir-black-theme.el
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'ir-black t)
+;; (load-theme 'ir-black t)
 ;; the 't' keeps emacs from continually asking
 ;; permission to load the theme
 ;;(load-theme 'solarized-light t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
+(load-theme 'solarized t)
 
 ;; don't launch the startup screen
 (setq inhibit-startup-buffer-menu t)
@@ -67,6 +69,15 @@
 (add-to-list 'auto-mode-alist
              '("\\(Capfile\\|Gemfile\\(?:\\.[a-zA-Z0-9._-]+\\)?\\|[rR]akefile\\)\\'" . ruby-mode))
 
+;; groovy mode for Jenkinsfile
+(add-to-list 'auto-mode-alist
+             '("\\Jenkinsfile\\'" . groovy-mode))
+
+;; octave mode
+;; (overrides ObjC mode for .m files)
+(autoload 'octave-mode "octave-mode" "Major mode for editing Octave/Matlab files" t)
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
 ;; git-gutter
 ;;   https://github.com/syohex/emacs-git-gutter
 (require 'git-gutter)
@@ -80,6 +91,12 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 
+;; xclip
+(require 'xclip)
+(xclip-mode)
+
+;; ESS (R)
+(require 'ess-site)
 
 ;; don't indent c++ namespaces
 ;; http://stackoverflow.com/questions/13825188/suppress-c-namespace-indentation-in-emacs
@@ -190,6 +207,9 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(flycheck-indication-mode (quote left-fringe))
  '(magit-diff-options nil)
+ '(package-selected-packages
+   (quote
+    (yasnippet yaml-mode xclip web-mode thrift textmate solarized-theme scala-mode sass-mode rvm rubocop rainbow-delimiters protobuf-mode projectile php-mode pallet markdown-mode magit linum-relative ir-black-theme highlight-indentation highlight-chars haskell-mode handlebars-mode groovy-mode git-gutter flycheck flx-ido evil ess erlang elixir-mix dockerfile-mode column-enforce-mode color-theme cmake-mode clojure-mode auto-complete alchemist ag)))
  '(safe-local-variable-values
    (quote
     ((encoding . utf-8)

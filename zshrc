@@ -10,6 +10,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# custom bin path
+export PATH=${PATH}:${HOME}/bin
+
 # OS-dependent config
 if [[ `uname` == 'Darwin' ]]
 then
@@ -29,6 +32,16 @@ if [[ -e ${ERLANG_INSTALL}/activate ]]
 then
   source ${ERLANG_INSTALL}/activate
 fi
+
+# Anaconda
+#export ANACONDA_ROOT=${HOME}/anaconda
+#if [[ -d ${ANACONDA_ROOT}/bin ]]
+#then
+#  export PATH=${ANACONDA_ROOT}/bin:$PATH
+#fi
+
+# Python
+export PYTHONSTARTUP=~/.pystartup
 
 # Customize to your needs...
 
@@ -63,4 +76,6 @@ fi
 PERL_MB_OPT="--install_base \"/Users/dswain/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/dswain/perl5"; export PERL_MM_OPT;
 
-export DATA_BAG_PATH=/Users/dswain/sifi_src/chef-repo/data_bags/
+export DATA_BAG_PATH=/Users/dswain/src/chef-repo/data_bags/
+
+cd ${HOME}

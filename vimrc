@@ -9,16 +9,20 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/ctrlp.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'Raimondi/delimitMate'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'elixir-lang/vim-elixir'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()
+if has("autocmd")
+  filetype plugin indent on
+end
 
 " use 256 colors in terminal 
 set t_Co=256
@@ -26,7 +30,7 @@ set t_Co=256
 " colorscheme
 syntax enable
 set background=dark
-colorscheme solarized
+" colorscheme solarized
 
 if has("gui_running")
 "    colorscheme ir_black
@@ -49,8 +53,9 @@ if has("multi_byte")
   setglobal fileencoding=utf-8           " change default file encoding when writing new files
 endif
 
-set smartindent
-set autoindent
+"set smartindent
+"set autoindent
+set cindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -65,15 +70,14 @@ set showmatch
 
 set cursorcolumn  " highlight the current column
 
+" highlight column 80
+set colorcolumn=80
+
 " Change mapleader
 let mapleader=","
 
 " files that get ignored by, for example Command-T
 set wildignore+=.git,*.o,*.a,checksums/*,*.beam
-
-if has("autocmd")
-  filetype plugin indent on
-end
 
 " treat Arduino files like c++
 au BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
