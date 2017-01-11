@@ -1,154 +1,97 @@
-""""""""""""""""""""""""""""
-" Vundle setup
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" general
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'kien/ctrlp.vim'
-Plugin 'burnettk/vim-angular'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'Raimondi/delimitMate'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'elixir-lang/vim-elixir'
+" Ruby
+Plug 'vim-ruby/vim-ruby'
 
-call vundle#end()
-if has("autocmd")
-  filetype plugin indent on
-end
+call plug#end()
 
-" use 256 colors in terminal 
-set t_Co=256
-
-" colorscheme
-syntax enable
-set background=dark
-" colorscheme solarized
-
-if has("gui_running")
-"    colorscheme ir_black
-    set guioptions=egmrt
-    set transparency=3
-"    set lines=55
-"    set columns=80
-    
-    " color tweaks
-"    autocmd ColorScheme * hi CursorLine guibg=#2D2D2D
-"    autocmd ColorScheme * hi CursorColumn guibg=#2D2D2D
-
-endif
-
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8                     " better default than latin1
-  setglobal fileencoding=utf-8           " change default file encoding when writing new files
-endif
-
-"set smartindent
-"set autoindent
-set cindent
+set backspace=indent,eol,start
+set cursorline
+set number
 set expandtab
+set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set showtabline=2
+set autoindent
 
+" delete comment character when joining lines
+set formatoptions+=j
+
+" wildmenu (the autocomplete menu at the bottom when you type :e)
 set wildmenu
-set ruler
-set number
-set hlsearch
-set incsearch
-set showmatch
+set wildignore+=*~
 
-set cursorcolumn  " highlight the current column
+" use teh mouse, allow it to handle resizing panes in tmux - see
+" http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux 
+set mouse+=a
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
 
-" highlight column 80
-set colorcolumn=80
+syntax enable
+filetype indent on
+filetype plugin on
 
-" Change mapleader
-let mapleader=","
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-" files that get ignored by, for example Command-T
-set wildignore+=.git,*.o,*.a,checksums/*,*.beam
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-" treat Arduino files like c++
-au BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
-" Rust plugin
-set runtimepath+=$HOME/.vim/rust-vim
-au BufRead,BufNewFile *.rs setfiletype rust
+map <c-b> :CtrlPBuffer<CR>
 
-" nginx plugin
-au BufRead,BufNewFile *nginx*conf setfiletype nginx
+au BufRead,BufNewFile Jenkinsfile set filetype=groovy
 
-" vim-ruby: https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
-set nocompatible
-syntax on
+" auto-wrap and let me know when i go over 80 columns
+" see http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns 
+set tw=79
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
-hi CursorColumn cterm=NONE ctermbg=103
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-" smart paste:  http://vim.wikia.com/wiki/Smart_paste
-:nnoremap <D-v> "+P=']
-:inoremap <D-v> <D-o>"+P<C-o>=']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-" VimOrganize
-au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
-au BufEnter *.org            call org#SetOrgFileType()
+" YCM and Ultisnips config from
+" http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
 
-" Vagrantfiles are just Ruby
-au BufRead,BufNewFile Vagrantfile set ft=ruby
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" go syntax hilighting
-au BufRead,BufNewFile *.go set filetype=go
+" " Ultisnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" Marked.app
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-
-" ControlP mappings
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>m :CtrlPMRUFiles<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" From Brandon
-
-set cursorline " Highlight current line
-set history=1000 " Increase history from 20 default to 1000
-set hlsearch " Highlight searches
-set magic " Enable extended regexes.
-set scrolloff=3 " Start scrolling three lines before horizontal border of window.
-set showmode " Show the current mode.
-set showtabline=2 " Always show tab bar.
-set splitbelow " New window goes below
-set splitright " New windows goes right
-set title " Show the filename in the window titlebar.
-set ttyfast " Send more characters at a given time.
-set wildchar=<TAB> " Character for CLI expansion (TAB-completion).
-set wildmode=list:longest " Complete only until point of ambiguity.
-set wrapscan " Searches wrap around end of file
-
-" Execute open rspec buffer
-function! RunSpec(args)
-  let cmd = ":! rspec --color % -cfn " . a:args
-  execute cmd 
-endfunction
- 
-" Mappings
-" run one rspec example or describe block based on cursor position
-map <leader>rs :call RunSpec("-l " . <C-r>=line('.')<CR>)
-" run full rspec file
-map <leader>RS :call RunSpec("")
-
-" End From Brandon
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-highlight CursorColumn ctermbg=black
