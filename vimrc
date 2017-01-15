@@ -16,6 +16,9 @@ Plug 'slashmili/alchemist.vim'
 " Ruby
 Plug 'vim-ruby/vim-ruby'
 
+" Thrift
+Plug 'solarnz/thrift.vim'
+
 call plug#end()
 
 set backspace=indent,eol,start
@@ -43,6 +46,9 @@ else
   set ttymouse=xterm2
 end
 
+" otherwise this is stupid slow
+set re=1
+
 syntax enable
 filetype indent on
 filetype plugin on
@@ -63,11 +69,16 @@ map <c-b> :CtrlPBuffer<CR>
 
 au BufRead,BufNewFile Jenkinsfile set filetype=groovy
 
+let mapleader = ","
+
+" close a buffer without losing the split
+nnoremap <leader>d :bp\| bd #<CR>
+
 " auto-wrap and let me know when i go over 80 columns
 " see http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns 
 set tw=79
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=80,100
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif

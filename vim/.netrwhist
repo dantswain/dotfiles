@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/dswain/src/chef-repo/data_bags'
-let g:netrw_dirhist_2='/Users/dswain/src/ueber/uri_parser/truths/sifi_uri_parser'
-let g:netrw_dirhist_3='/Users/dswain/src/sifi/lib/sifi'
-let g:netrw_dirhist_4='/Users/dswain/src/sifi/lib'
-let g:netrw_dirhist_5='/Users/dswain/src/bidder/tests/spec/appnexus'
-let g:netrw_dirhist_6='/Users/dswain/src/bidder/tests/spec/contextweb'
-let g:netrw_dirhist_7='/Users/dswain/src/bidder/tests/spec/google'
