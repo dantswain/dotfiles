@@ -8,6 +8,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'w0rp/ale'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
@@ -21,6 +22,7 @@ Plug 'solarnz/thrift.vim'
 
 call plug#end()
 
+set nocompatible
 set backspace=indent,eol,start
 set cursorline
 set number
@@ -48,6 +50,16 @@ end
 
 " otherwise this is stupid slow
 set re=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale
+"set nocompatible
+"filetype off
+"
+"let &runtimepath.=',~/.vim/plugged/ale'
+"
+"filetype plugin on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable
 filetype indent on
@@ -82,6 +94,8 @@ if exists('+colorcolumn')
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
+
+colorscheme slate
 
 " Syntastic
 " set statusline+=%#warningmsg#

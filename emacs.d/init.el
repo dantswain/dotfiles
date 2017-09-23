@@ -36,6 +36,7 @@
 ;; permission to load the theme
 ;;(load-theme 'solarized-light t)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
+(customize-set-variable 'frame-background-mode 'dark)
 (load-theme 'solarized t)
 
 ;; don't launch the startup screen

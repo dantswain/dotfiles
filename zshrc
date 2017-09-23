@@ -11,7 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # custom bin path
-export PATH=${PATH}:${HOME}/bin
+export PATH=${PATH}:${HOME}/bin:/opt/vertica/bin
 
 # OS-dependent config
 if [[ `uname` == 'Darwin' ]]
@@ -26,7 +26,7 @@ else
   z_root=${HOME}/.zcommand
 fi
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.3.4
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.5.1
 
 # kerl erlang version
 export ERLANG_INSTALL=${HOME}/bin/r17p1
