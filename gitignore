@@ -7,3 +7,4 @@ mac-build/
 *~
 .dir-locals.el
 .agignore
+.ignore

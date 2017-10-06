@@ -53,7 +53,7 @@ if [[ -e ${chruby} ]]
 then
   source ${chruby}
   source ${chruby_root}/chruby/auto.sh
-  chruby ruby-2.2
+  chruby ruby-2.3
 fi
 
 # don't autocorrect 'gem'
