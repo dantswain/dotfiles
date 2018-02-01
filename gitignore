@@ -8,3 +8,6 @@ mac-build/
 .dir-locals.el
 .agignore
 .ignore
+.ropeproject/
+.rgignore
+_vimrc_local.vim

@@ -8,7 +8,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
-Plug 'w0rp/ale'
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
+
+" terraform
+Plug 'hashivim/vim-terraform'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
@@ -20,6 +24,11 @@ Plug 'vim-ruby/vim-ruby'
 " Thrift
 Plug 'solarnz/thrift.vim'
 
+" Python
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+
+Plug 'w0rp/ale'
+
 call plug#end()
 
 set nocompatible
@@ -30,7 +39,6 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set autoindent
 
 " delete comment character when joining lines
 set formatoptions+=j
@@ -60,10 +68,9 @@ set re=1
 "
 "filetype plugin on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-syntax enable
-filetype indent on
-filetype plugin on
+let g:ale_linters = {
+      \  'python': ['pylint'],
+      \}
 
 " The Silver Searcher
 if executable('ag')
@@ -120,3 +127,5 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+"" local_vimrc
+call lh#local_vimrc#munge('whitelist', $HOME.'/src/')

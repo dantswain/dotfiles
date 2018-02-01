@@ -26,7 +26,7 @@ else
   z_root=${HOME}/.zcommand
 fi
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.5.1
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.5.2
 
 # kerl erlang version
 export ERLANG_INSTALL=${HOME}/bin/r17p1
@@ -44,6 +44,18 @@ fi
 
 # Python
 export PYTHONSTARTUP=~/.pystartup
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+spark_home=/opt/apache/spark-2.1.2
+if [[ -d ${spark_home} ]]
+then
+  export SPARK_HOME=${spark_home}
+  export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/:${PYTHONPATH}
+fi
+unset spark_home
 
 # Customize to your needs...
 
@@ -80,4 +92,6 @@ PERL_MM_OPT="INSTALL_BASE=/Users/dswain/perl5"; export PERL_MM_OPT;
 
 export DATA_BAG_PATH=/Users/dswain/src/chef-repo/data_bags/
 
-cd ${HOME}
+
+# added by travis gem
+[ -f /Users/dswain/.travis/travis.sh ] && source /Users/dswain/.travis/travis.sh
