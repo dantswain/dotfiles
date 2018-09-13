@@ -4,7 +4,7 @@
 [color]
 	ui = true
 [core]
-	excludesfile = /Users/dswain/.gitignore
+	excludesfile = "${HOME}"/.gitignore
 	editor = vim
 [push]
 	default = simple
