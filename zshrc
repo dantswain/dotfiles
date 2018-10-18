@@ -10,9 +10,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# custom bin path
-export PATH=${PATH}:${HOME}/bin:/opt/vertica/bin
-
 # OS-dependent config
 if [[ `uname` == 'Darwin' ]]
 then
@@ -20,7 +17,10 @@ then
   z_root=`brew --prefix`/etc/profile.d
   
   # Haskell/cabal
-  export PATH=${HOME}/Library/Haskell/bin:${PATH}
+  if [[ -d ${HOME}/Library/Haskell/bin ]]
+  then
+    export PATH=${HOME}/Library/Haskell/bin:${PATH}
+  fi
 else
   chruby_root=/usr/local/share
   z_root=${HOME}/.zcommand
@@ -90,8 +90,15 @@ fi
 PERL_MB_OPT="--install_base \"/Users/dswain/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/dswain/perl5"; export PERL_MM_OPT;
 
-export DATA_BAG_PATH=/Users/dswain/src/chef-repo/data_bags/
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
+if [[ -f /usr/local/etc/profile.d/z.sh ]]
+then
+  . /usr/local/etc/profile.d/z.sh
+fi
 
 # added by travis gem
 [ -f /Users/dswain/.travis/travis.sh ] && source /Users/dswain/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

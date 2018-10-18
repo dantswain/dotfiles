@@ -11,3 +11,7 @@ mac-build/
 .ropeproject/
 .rgignore
 _vimrc_local.vim
+.pytest_cache
+venv
+.vscode
+.idea
