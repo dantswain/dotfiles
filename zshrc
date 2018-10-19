@@ -102,3 +102,13 @@ fi
 [ -f /Users/dswain/.travis/travis.sh ] && source /Users/dswain/.travis/travis.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# https://medium.com/@caleb89taylor/coding-like-a-hacker-in-the-terminal-79e22954968e
+# fo [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fo() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
