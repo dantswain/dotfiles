@@ -26,7 +26,7 @@ else
   z_root=${HOME}/.zcommand
 fi
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.5.2
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.6.4
 
 # kerl erlang version
 export ERLANG_INSTALL=${HOME}/bin/r17p1
