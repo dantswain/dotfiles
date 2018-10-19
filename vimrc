@@ -27,7 +27,11 @@ Plug 'solarnz/thrift.vim'
 " Python
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 
+" Linting
+" disable ale for now, see
+" https://github.com/elixir-editors/vim-elixir/issues/407
 Plug 'w0rp/ale'
+" Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 

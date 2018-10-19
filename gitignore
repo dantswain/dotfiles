@@ -15,3 +15,8 @@ _vimrc_local.vim
 venv
 .vscode
 .idea
+local_env
+local_venv
+.vscode
+*metastore_db
+*.parquet
