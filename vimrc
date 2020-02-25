@@ -1,3 +1,4 @@
+set encoding=utf8
 call plug#begin('~/.vim/plugged')
 
 " general
@@ -97,13 +98,13 @@ let mapleader = ","
 " close a buffer without losing the split
 nnoremap <leader>d :bp\| bd #<CR>
 
-" auto-wrap and let me know when i go over 80 columns
+" auto-wrap and let me know when i go over 100 columns
 " see http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns 
-set tw=79
+set tw=99
 if exists('+colorcolumn')
-  set colorcolumn=80,100
+  set colorcolumn=100
 else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 endif
 
 colorscheme slate

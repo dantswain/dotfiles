@@ -3,7 +3,9 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
+
+# zmodload zsh/zprof
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -66,6 +68,12 @@ then
   source ${chruby}
   source ${chruby_root}/chruby/auto.sh
   chruby ruby-2.3
+else
+  # newer mac, no chruby, system ruby is 2.5.0
+  if [[ -d ${HOME}/.gem/ruby/2.5.0/bin ]]
+  then
+    export PATH=${HOME}/.gem/ruby/2.5.0/bin:${PATH}
+  fi
 fi
 
 # don't autocorrect 'gem'
@@ -98,6 +106,11 @@ then
   . /usr/local/etc/profile.d/z.sh
 fi
 
+if [[ -d ~/bin ]]
+then
+  export PATH=~/bin:${PATH}
+fi
+
 # added by travis gem
 [ -f /Users/dswain/.travis/travis.sh ] && source /Users/dswain/.travis/travis.sh
 
@@ -112,3 +125,20 @@ fo() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+#export NVM_DIR="$HOME/.nvm"
+#. "/usr/local/opt/nvm/nvm.sh"
+. $HOME/.asdf/asdf.sh
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+# zprof
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dswain/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dswain/src/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dswain/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dswain/src/google-cloud-sdk/completion.zsh.inc'; fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/dswain/bin/terraform terraform

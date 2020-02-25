@@ -1,6 +1,6 @@
 (source "elpa" "http://tromey.com/elpa/")
 (source "gnu" "http://elpa.gnu.org/packages/")
-(source "marmalade" "http://marmalade-repo.org/packages/")
+;; (source "marmalade" "http://marmalade-repo.org/packages/")
 (source "melpa" "http://melpa.milkbox.net/packages/")
 
 (depends-on "ag")

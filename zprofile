@@ -75,6 +75,8 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
+# save erlang & elixir shell history
+export ERL_FLAGS="-kernel shell_history enabled"
 
 # Setting PATH for Python 3.6
 # The original version is saved in .zprofile.pysave
