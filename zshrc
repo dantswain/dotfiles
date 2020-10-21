@@ -3,6 +3,9 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# zmodload zsh/zprof
 
 
 # zmodload zsh/zprof
@@ -15,7 +18,7 @@ fi
 # OS-dependent config
 if [[ `uname` == 'Darwin' ]]
 then
-  chruby_root=/usr/local/opt/chruby/share
+  #chruby_root=/usr/local/opt/chruby/share
   z_root=`brew --prefix`/etc/profile.d
   
   # Haskell/cabal
@@ -24,7 +27,7 @@ then
     export PATH=${HOME}/Library/Haskell/bin:${PATH}
   fi
 else
-  chruby_root=/usr/local/share
+  #chruby_root=/usr/local/share
   z_root=${HOME}/.zcommand
 fi
 
@@ -62,22 +65,22 @@ unset spark_home
 # Customize to your needs...
 
 # chruby
-chruby=${chruby_root}/chruby/chruby.sh
-if [[ -e ${chruby} ]]
-then
-  source ${chruby}
-  source ${chruby_root}/chruby/auto.sh
-  chruby ruby-2.3
-else
-  # newer mac, no chruby, system ruby is 2.5.0
-  if [[ -d ${HOME}/.gem/ruby/2.5.0/bin ]]
-  then
-    export PATH=${HOME}/.gem/ruby/2.5.0/bin:${PATH}
-  fi
-fi
+#chruby=${chruby_root}/chruby/chruby.sh
+#if [[ -e ${chruby} ]]
+#then
+#  source ${chruby}
+#  source ${chruby_root}/chruby/auto.sh
+#  chruby ruby-2.3
+#else
+#  # newer mac, no chruby, system ruby is 2.5.0
+#  if [[ -d ${HOME}/.gem/ruby/2.5.0/bin ]]
+#  then
+#    export PATH=${HOME}/.gem/ruby/2.5.0/bin:${PATH}
+#  fi
+#fi
 
 # don't autocorrect 'gem'
-alias gem='nocorrect gem'
+#alias gem='nocorrect gem'
 
 # always launch emacs in 256-color terminal mode
 alias emacs='TERM=xterm-256color emacs -nw'
@@ -130,7 +133,7 @@ fo() {
 #. "/usr/local/opt/nvm/nvm.sh"
 . $HOME/.asdf/asdf.sh
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 # zprof
 
@@ -142,3 +145,6 @@ if [ -f '/Users/dswain/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/User
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/dswain/bin/terraform terraform
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
