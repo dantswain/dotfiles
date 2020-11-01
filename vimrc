@@ -10,6 +10,7 @@ Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
+Plug 'mhinz/vim-mix-format'
 
 " terraform
 Plug 'hashivim/vim-terraform'
@@ -88,6 +89,11 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+if executable('rg')
+  let g:ctrlp_user_command = ['.git', 'cd %s && rg --files-with-matches ".*"', 'find %s -type f']
+  let g:ctrlp_use_caching = 0
+endif
+
 map <c-b> :CtrlPBuffer<CR>
 
 au BufRead,BufNewFile Jenkinsfile set filetype=groovy
@@ -133,3 +139,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "" local_vimrc
 call lh#local_vimrc#munge('whitelist', $HOME.'/src/')
+
+" mix format on save
+let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1

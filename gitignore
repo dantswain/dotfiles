@@ -20,3 +20,7 @@ local_venv
 .vscode
 *metastore_db
 *.parquet
+.elixir_ls
+dts
+.bloop
+.metals
