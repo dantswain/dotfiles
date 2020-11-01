@@ -26,14 +26,15 @@ else
   z_root=${HOME}/.zcommand
 fi
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.6.4
-
-# kerl erlang version
-export ERLANG_INSTALL=${HOME}/bin/r17p1
-if [[ -e ${ERLANG_INSTALL}/activate ]]
-then
-  source ${ERLANG_INSTALL}/activate
-fi
+# using asdf for these now
+#test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex" && kiex default 1.6.4
+#
+## kerl erlang version
+#export ERLANG_INSTALL=${HOME}/bin/r17p1
+#if [[ -e ${ERLANG_INSTALL}/activate ]]
+#then
+#  source ${ERLANG_INSTALL}/activate
+#fi
 
 # Anaconda
 #export ANACONDA_ROOT=${HOME}/anaconda
@@ -49,13 +50,13 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-spark_home=/opt/apache/spark-2.1.2
-if [[ -d ${spark_home} ]]
-then
-  export SPARK_HOME=${spark_home}
-  export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/:${PYTHONPATH}
-fi
-unset spark_home
+#spark_home=/opt/apache/spark-2.1.2
+#if [[ -d ${spark_home} ]]
+#then
+#  export SPARK_HOME=${spark_home}
+#  export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/:${PYTHONPATH}
+#fi
+#unset spark_home
 
 # Customize to your needs...
 
@@ -103,6 +104,11 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+if [[ -d ~/bin ]]
+then
+  export PATH=~/bin:${PATH}
+fi
+
 # https://medium.com/@caleb89taylor/coding-like-a-hacker-in-the-terminal-79e22954968e
 # fo [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
@@ -112,3 +118,9 @@ fo() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+
+. $HOME/.asdf/asdf.sh
+
+# . $HOME/.asdf/completions/asdf.bash

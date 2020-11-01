@@ -17,7 +17,7 @@ fi
 # Editors
 #
 
-export EDITOR='vim'
+export EDITOR='/usr/local/bin/vim'
 export VISUAL='nano'
 export PAGER='less'
 
