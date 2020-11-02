@@ -24,3 +24,14 @@ local_venv
 dts
 .bloop
 .metals
+.venv
+.build_venv
+.metals
+.scalafmt.conf
+.elixir_ls
+dtsnotes.md
+.history
+.env
+__pycache__
+.venvs
+.mypy_cache
