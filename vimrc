@@ -139,7 +139,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "" local_vimrc
-call lh#local_vimrc#munge('whitelist', $HOME.'/src/')
+" call lh#local_vimrc#munge('whitelist', $HOME.'/src/')
 
 " mix format on save
 let g:mix_format_on_save = 1

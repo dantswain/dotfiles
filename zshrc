@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+
+# zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/dswain/.oh-my-zsh"
@@ -144,6 +147,11 @@ then
   export PATH=~/bin:${PATH}
 fi
 
+if [[ -d /usr/local/opt/coreutils/libexec/gnubin ]]
+then
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
 # added by travis gem
 [ -f /Users/dswain/.travis/travis.sh ] && source /Users/dswain/.travis/travis.sh
 
@@ -163,14 +171,22 @@ fo() {
 
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dswain/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dswain/src/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dswain/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dswain/src/google-cloud-sdk/completion.zsh.inc'; fi
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/dswain/bin/terraform terraform
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dswain/Developer/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dswain/Developer/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dswain/Developer/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dswain/Developer/google-cloud-sdk/completion.zsh.inc'; fi
+
+# direnv
+if [ -f "${HOME}/bin/direnv" ]; then eval "$(direnv hook zsh)"; fi
+
+export MYVIMRC="${HOME}/.config/nvim/init.vim"
+
+# zprof
 

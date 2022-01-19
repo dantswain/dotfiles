@@ -35,3 +35,5 @@ dtsnotes.md
 __pycache__
 .venvs
 .mypy_cache
+.editorconfig
+/config/dts.send_emails.exs
